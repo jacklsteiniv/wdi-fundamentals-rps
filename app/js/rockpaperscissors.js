@@ -1,10 +1,10 @@
 ////////////////////////////////////////////////
 /*   Provided Code - Please Don't Edit   */
 ////////////////////////////////////////////////
-'use strict';
+//‘use strict';
 
 function getInput() {
-    console.log("Please choose either 'rock', 'paper', or 'scissors'.")
+    console.log("Please choose either 'rock', 'paper', or 'scissors’.”);
     return prompt();
 }
 function randomPlay() {
@@ -21,6 +21,10 @@ function randomPlay() {
 /*           Write Your Code Below            */
 ////////////////////////////////////////////////
 
+//these variables must be declared globally so we can use them in the playToFive and getWinner fns
+var playerMove;
+var computerMove;
+
 function getPlayerMove(move) {
     // Write an expression that operates on a variable called `move`
     // If a `move` has a value, your expression should evaluate to that value.
@@ -33,7 +37,7 @@ function getComputerMove(move) {
     // If a `move` has a value, your expression should evaluate to that value.
     // However, if `move` is not specified / is null, your expression should equal `randomPlay()`.
 
-       return move = move || randomPlay();
+       return move || randomPlay();
 }
 
 function getWinner(playerMove,computerMove) {
@@ -45,7 +49,7 @@ function getWinner(playerMove,computerMove) {
 
 if (playerMove === computerMove) {
        winner = 'tie';
-   }
+    }
   
     else if (playerMove === "rock" && computerMove === "scissors") {
         winner = 'player';
@@ -75,6 +79,40 @@ function playToFive() {
     var computerWins = 0;
     // Write code that plays 'Rock, Paper, Scissors' until either the player or the computer has won five times.
     /* YOUR CODE HERE */
-    return [playerWins, computerWins];
+    while (playerWins < 5 && computerWins < 5) {
+    	//the local variables below store the player and computer’s moves, and the winner, of the round.
+       	var playerChoose = getPlayerMove();
+    	var computerChoose = getComputerMove();
+    	var roundWinner = getWinner(playerChoose, computerChoose);
+
+    	if (roundWinner === 'player') {
+        	playerWins+=1;
+        	console.log("Player gets a point");
+        	console.log("Player chose " + playerChoose + " while Computer chose " + computerChoose);
+        	console.log("The score is currently " + playerWins + " to " + computerWins);
+    
+    	}
+    	else if (roundWinner === 'computer') {
+        	computerWins +=1;
+        	console.log("Computer gets a point");
+        	console.log('Player chose ' + playerChoose + ' while Computer chose ' + computerChoose);
+        	console.log('The score is currently ' + playerWins + ' to ' + computerWins);
+    	}
+    	else {
+        	console.log("Tie! Go again.");
+    	}
+     }
+  
+	if(playerWins === 5) {
+      		console.log("Congrats, you win! Final score:");
+      		return [playerWins, computerWins];
+      		//return will exit the loop for us. last item we see
+  	}
+  	else if (computerWins === 5) {
+      		console.log("Aw man, you lost. Try again! Final score:");
+      		return [playerWins, computerWins];
+  	}
 }
 
+//The code below is used to test and run the playToFive function. Use on CodeAcademy Labs, repl.it fails
+//console.log(playToFive());
