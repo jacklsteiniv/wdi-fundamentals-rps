@@ -4,9 +4,11 @@
 //‘use strict';
 
 function getInput() {
-    console.log("Please choose either 'rock', 'paper', or 'scissors’.”);
-    return prompt();
+    console.log("Please choose either 'rock', 'paper', or 'scissors'.");
+    var answer = prompt();
+    return answer;
 }
+
 function randomPlay() {
     var randomNumber = Math.random();
     if (randomNumber < 0.33) {
@@ -21,7 +23,7 @@ function randomPlay() {
 /*           Write Your Code Below            */
 ////////////////////////////////////////////////
 
-//these variables must be declared globally so we can use them in the playToFive and getWinner fns
+//these variables must be declared globally so we can use them in the playToFive and getWinner functions
 var playerMove;
 var computerMove;
 
